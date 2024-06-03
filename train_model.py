@@ -83,9 +83,13 @@ for col in cat_features:
         p, r, fb = performance_on_categorical_slice(
             test,
             col,
-            slicevalue
+            slicevalue,
+            cat_features,
+            "salary",
+            encoder,
+            lb,
+            model
             # use test, col and slicevalue as part of the input
-            # SHOULD I INCLUDE THE REST???
         )
         with open("slice_output.txt", "a") as f:
             # Indented below; should have been that way anyway??
