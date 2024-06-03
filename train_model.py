@@ -13,7 +13,7 @@ from ml.model import (
     train_model,
 )
 # TODO: load the cencus.csv data <-- what is cencus
-project_path = "Your path here" # <---WHAT GOES HERE??
+project_path = os.getcwd() # <---WHAT IS GETCWD??
 data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
 data = pd.read_csv(data_path)
@@ -68,7 +68,7 @@ model = load_model(
 ) 
 
 # TODO: use the inference function to run the model inferences on the test dataset.
-preds = # your code here
+preds = inference(model, X_test)
 
 # Calculate and print the metrics
 p, r, fb = compute_model_metrics(y_test, preds)
@@ -81,9 +81,13 @@ for col in cat_features:
     for slicevalue in sorted(test[col].unique()):
         count = test[test[col] == slicevalue].shape[0]
         p, r, fb = performance_on_categorical_slice(
-            # your code here
+            test,
+            col,
+            slicevalue
             # use test, col and slicevalue as part of the input
+            # SHOULD I INCLUDE THE REST???
         )
         with open("slice_output.txt", "a") as f:
-        print(f"{col}: {slicevalue}, Count: {count:,}", file=f)
-        print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}", file=f)
+            # Indented below; should have been that way anyway??
+            print(f"{col}: {slicevalue}, Count: {count:,}", file=f)
+            print(f"Precision: {p:.4f} | Recall: {r:.4f} | F1: {fb:.4f}", file=f)
