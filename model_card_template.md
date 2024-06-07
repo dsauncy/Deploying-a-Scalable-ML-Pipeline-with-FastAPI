@@ -1,33 +1,29 @@
 # Model Card
 
-(Work in progress)
-
 ## Model Details
-• Model name / type: 
+• Model name / type: Logistic Regression
 
-• Model purpose: 
+• Model purpose: To predict salary range based on categorical features.
 
-• Dataset: 
-
+• Dataset: publicly available Census Bureau data (census.csv)
+https://archive.ics.uci.edu/dataset/20/census+income
 • Developed by Douglas Sauncy, a student at Western Governors University.  Version 1.0.  06/2024
 
 
 ## Intended Use
-• Intended to be used for ...?
+• Intended to be used for predicting whether an individual makes more or less than 50k
 
-• Not intended for ...?
+• Not intended for gambling purposes.
 
 ## Training Data
-• Dataset: 
+• Dataset: https://archive.ics.uci.edu/dataset/20/census+income
 
 ## Evaluation Data
-• Dataset: 
+• Dataset: https://archive.ics.uci.edu/dataset/20/census+income
 
 ## Metrics
-• The model's performance was evaluated using the Precision, Recall, and F-1 score as metrics. 
+• The model's performance was evaluated using the Precision, Recall, and F-1 score as metrics:
+Precision: 0.7101 | Recall: 0.2683 | F1: 0.3895
 
 ## Ethical Considerations
-• This model was created for evil purposes and should not be used except for demonic summoning, curses, etc.
-
-## Caveats and Recommendations
-• Does not do this well, or that well, and maybe should .... etc.
+• This model was created for educational and training purposes only.
