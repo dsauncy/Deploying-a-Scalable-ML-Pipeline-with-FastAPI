@@ -3,9 +3,10 @@ import os
 import pandas as pd
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
-
+from fastapi import FastAPI
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
+import uvicorn
 
 # DO NOT MODIFY
 class Data(BaseModel):
@@ -26,21 +27,34 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-
+# Path for working directory
 project_path = os.getcwd()
 
 # path for encoder
-path = os.path.join(project_path, "model", "encoder.pkl")
-encoder = load_model(path)
+try:
+    path = os.path.join(project_path, "model", "encoder.pkl")
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Loading model from: {path}")
+    encoder = load_model(path)
+    print('Encoder is a go!')
+except Exception as e:
+    print('(explosions)')
+    print(f"What went wrong: {e}")
 
 # path for model
-path = os.path.join(project_path, "model", "model.pk1")
-model = load_model(path)
+try:
+    path = os.path.join(project_path, "model", "model.pkl")
+    # (Having some trouble formatting the directory structure):
+    print(f"Current working directory: {os.getcwd()}")
+    print(f"Loading model from: {path}")
+    model = load_model(path)
+    print('Model is a go!')
+except Exception as e:
+    print('(explosions)')
+    print(f"What went wrong: {e}")
 
-# TODO: create a RESTful API using FastAPI
-app = # your code here
+app = FastAPI() # WE DID IT!!!
 
-# TODO: create a GET on the root giving a welcome message
 @app.get("/")
 async def get_root():
     return {"greeting": 'Hello, world!'}
@@ -68,10 +82,12 @@ async def post_inference(data: Data):
         "native-country",
     ]
     data_processed, _, _, _ = process_data(
-        # your code here
-        # use data as data input
-        # use training = False
-        # do not need to pass lb as input
+        X = data,
+        categorical_features = cat_features,
+        label = 'label',
+        training = False,
+        encoder = encoder
     )
-    _inference = # your code here to predict the result using data_processed
+
+    _inference = inference(model, data_processed)
     return {"result": apply_label(_inference)}
