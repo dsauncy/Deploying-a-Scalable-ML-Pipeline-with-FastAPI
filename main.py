@@ -60,7 +60,6 @@ async def get_root():
     return {"greeting": 'Hello, world!'}
 
 
-# TODO: create a POST on a different path that does model inference
 @app.post("/data/")
 async def post_inference(data: Data):
     # DO NOT MODIFY: turn the Pydantic model into a dict.
