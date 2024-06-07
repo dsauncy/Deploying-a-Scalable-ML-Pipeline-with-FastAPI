@@ -1,3 +1,7 @@
+#### I BELIEVE THIS SCRIPT IS COMPLETE AND CORRECT
+#### ERRORS ARE HAPPENING ELSEWHERE
+#### LEAVE THIS POOR SCRIPT ALONE IT DID NOTHING WRONG
+
 import json
 import requests
 
@@ -9,7 +13,7 @@ get_response = requests.get(r)
 # TODO: print the status code
 print("Status Code:", get_response.status_code)
 # TODO: print the welcome message
-print("Response JSON:", get_response.json())
+print("Welcome message:", get_response.json())
 
 
 
@@ -32,9 +36,9 @@ data = {
 
 # TODO: send a POST using the data above
 r = "http://127.0.0.1:8000/data/"
-post_response = requests.post(r, json=data)
+post_response = requests.post(r, json = data)
 
 # TODO: print the status code
 print('Status code:', post_response.status_code)
 # TODO: print the result
-print('Response JSON:', post_response.json())
+print('Result:', post_response.json())
