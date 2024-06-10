@@ -1,5 +1,5 @@
 import os
-
+import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -13,7 +13,7 @@ from ml.model import (
     train_model,
 )
 # TODO: load the cencus.csv data <-- what is cencus
-project_path = os.getcwd() # <---WHAT IS GETCWD??
+project_path = os.getcwd()
 data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
 data = pd.read_csv(data_path)
@@ -66,7 +66,7 @@ save_model(encoder, encoder_path)
 # load the model
 model = load_model(
     model_path
-) 
+)
 
 # TODO: use the inference function to run the model inferences on the test dataset.
 preds = inference(model, X_test)
@@ -82,15 +82,14 @@ for col in cat_features:
     for slicevalue in sorted(test[col].unique()):
         count = test[test[col] == slicevalue].shape[0]
         p, r, fb = performance_on_categorical_slice(
-            test,
-            col,
-            slicevalue,
-            cat_features,
-            "salary",
-            encoder,
-            lb,
-            model
-            # use test, col and slicevalue as part of the input
+            data=test,
+            column_name=col,
+            slice_value=slicevalue,
+            categorical_features=cat_features,
+            label='salary',
+            encoder=encoder,
+            lb=lb,
+            model=model
         )
         with open("slice_output.txt", "a") as f:
             # Indented below; should have been that way anyway??
