@@ -49,11 +49,28 @@ def test_one():
 
 
 def test_two():
-    """
-    Test to determine if the ML model uses the expected algorithm.
-    """
-    # Check if the model uses the expected algorithm
-    assert isinstance(model, LogisticRegression)
+    # test to see if model has been fitted
+    def is_fitted(model):
+        '''
+        Checks if a scikit-learn estimator/transformer has already been fit.
+
+
+        Parameters
+        ----------
+        model: scikit-learn estimator (e.g. RandomForestClassifier)
+            or transformer (e.g. MinMaxScaler) object
+
+
+        Returns
+        -------
+        Boolean that indicates if ``model`` has already been fit (True) or not (False).
+        '''
+
+        attrs = [v for v in vars(model)
+                 if v.endswith("_") and not v.startswith("__")]
+
+        return len(attrs) != 0
+    assert is_fitted(model)
 
 
 def test_three():
